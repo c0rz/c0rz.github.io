@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Heading,
   ChakraProvider,
   Box,
   Text,
@@ -21,7 +22,8 @@ function App() {
           <VStack spacing={8}>
             <Logo h="40vmin" pointerEvents="none" />
             <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
+              <Heading>I'm a Heading</Heading>
+              <Code fontSize="xl">src/App.js</Code> and save to reload.
             </Text>
             <Link
               color="teal.500"
