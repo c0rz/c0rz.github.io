@@ -5,8 +5,11 @@ import Banner from '../components/banner'
 export default function Home() {
     return (
         <div>
-            <Navbar/>
-            <Banner/>
+            <Head>
+                <title>Cornelius - Portfolio </title>
+            </Head>
+            <Navbar />
+            <Banner />
         </div>
     )
 }

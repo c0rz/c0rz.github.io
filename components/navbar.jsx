@@ -11,10 +11,10 @@ function Navbar(props) {
                 </div>
                 <div className="navbar-end hidden px-2 mx-2 md:block md:flex">
                     <div className="flex items-stretch">
-                        <a className="btn btn-ghost btn-sm rounded-btn">
+                        <a href="/" className="btn btn-ghost btn-sm rounded-btn">
                             Home
                         </a>
-                        <a className="btn btn-ghost btn-sm rounded-btn">
+                        <a href="/portfolio" className="btn btn-ghost btn-sm rounded-btn">
                             Portfolio
                         </a>
                         <a className="btn btn-ghost btn-sm rounded-btn">
