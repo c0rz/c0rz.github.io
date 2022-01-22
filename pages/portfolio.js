@@ -16,11 +16,13 @@ export default function Portofolio() {
                         {projects.map((item) => (
                             <Fade bottom key={item.name}>
                                 <a href={item.repo} className="card" >
-                                    <div>
-                                        <div className="name">{item.name}</div>
-                                        <div className="info">{item.description}</div>
+                                    <div className="rapihin">
+                                        <div>
+                                            <div className="name">{item.name}</div>
+                                            <div className="info">{item.description}</div>
+                                        </div>
                                         {item.tags.map((tag) => (
-                                            <div key={tag} className="tag">
+                                            <div key={tag} className="tag w-max">
                                                 {tag}
                                             </div>
                                         ))}
