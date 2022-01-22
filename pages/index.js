@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <div>
             <Head>
-                <title>Cornelius - Portfolio </title>
+                <title>Home - Cornelius</title>
             </Head>
             <Navbar />
             <Banner />
