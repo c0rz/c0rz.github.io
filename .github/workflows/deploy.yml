@@ -19,11 +19,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+          cache: 'npm'
+
+      - name: Cache Next.js build
+        uses: actions/cache@v3
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
         run: |
           npm install -g npm@latest
-          npm install --legacy-peer-deps
+          npm ci
 
       - name: Build and Export
         run: |

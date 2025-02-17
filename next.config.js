@@ -6,7 +6,11 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     unoptimized: true // karena Anda menggunakan next export
   },
-  // Hapus assetPrefix dan basePath karena ini adalah user page
+  // Tambahkan ini untuk menangani error prerender
+  experimental: {
+    workerThreads: false,
+    cpus: 1
+  }
 }
 
 module.exports = nextConfig
