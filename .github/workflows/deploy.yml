@@ -25,7 +25,7 @@ jobs:
           npm run build
           npm run export
         env:
-          NEXT_PUBLIC_BASE_PATH: '/c0rz.github.io' # Sesuaikan dengan nama repo Anda
+          NEXT_PUBLIC_BASE_PATH: ''
 
       - name: Add .nojekyll file
         run: touch out/.nojekyll
