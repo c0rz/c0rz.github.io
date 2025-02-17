@@ -6,10 +6,15 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     unoptimized: true // karena Anda menggunakan next export
   },
-  // Tambahkan ini untuk menangani error prerender
+  // Tambahkan konfigurasi untuk menangani error prerender
   experimental: {
     workerThreads: false,
     cpus: 1
+  },
+  // Tambahkan ini untuk menangani masalah optimisasi
+  webpack: (config) => {
+    config.optimization.minimize = false;
+    return config;
   }
 }
 
