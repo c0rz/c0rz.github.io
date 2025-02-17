@@ -1,53 +1,37 @@
-name: Deploy to Github Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  deployment:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          persist-credentials: false
+          node-version: '18.17.0'
+          cache: 'npm'
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Update NPM
-        run: npm i -g npm@latest
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
-
-      - name: Build
-        run: |
-          npm i --legacy-peer-deps
-          npm run build
-          npm run export
-          touch out/.nojekyll
+      - name: Build and Export
+        run: npm run export
         env:
-          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          NEXT_PUBLIC_BASE_PATH: '/{repo-name}' # Ganti {repo-name} dengan nama repository Anda
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+      - name: Add .nojekyll file
+        run: touch out/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          BRANCH: production # Nama branch yang akan digunakan.
-          FOLDER: out # Folder yang akan dideploy
-          CLEAN: true # Hapus file di dalam branch
+          branch: gh-pages
+          folder: out
+          clean: true
