@@ -1,6 +1,7 @@
 import { AiFillGithub, AiFillLinkedin, AiOutlineMedium } from 'react-icons/ai'
 import { FaServer, FaDatabase, FaCode } from 'react-icons/fa'
-import { SiPostman, SiNodedotjs, SiPostgresql, SiPhp, SiRedhat, SiMicrosoftazure } from 'react-icons/si'
+import { SiNodedotjs, SiPostgresql, SiPhp, SiRedhat, SiMicrosoftazure, SiPostman } from 'react-icons/si'
+import { BiLogoPython } from 'react-icons/bi'
 
 function Banner() {
     return (
@@ -107,7 +108,7 @@ function Banner() {
                             <SiPostman className="w-12 h-12 text-gray-600 dark:text-gray-400" />
                             <SiRedhat className="w-12 h-12 text-gray-600 dark:text-gray-400" />
                             <SiPhp className="w-12 h-12 text-gray-600 dark:text-gray-400" />
-                            <SiPython className="w-12 h-12 text-gray-600 dark:text-gray-400" />
+                            <BiLogoPython className="w-12 h-12 text-gray-600 dark:text-gray-400" />
                             <SiMicrosoftazure className="w-12 h-12 text-gray-600 dark:text-gray-400" />
                         </div>
                     </div>
