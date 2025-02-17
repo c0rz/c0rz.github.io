@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: Checkout
@@ -21,16 +23,8 @@ jobs:
           node-version: '20.x'
           cache: 'npm'
 
-      - name: Cache Next.js build
-        uses: actions/cache@v3
-        with:
-          path: |
-            .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Clean install
+      - name: Install dependencies
         run: |
-          rm -rf node_modules package-lock.json
           npm install
 
       - name: Build and Export
@@ -40,10 +34,14 @@ jobs:
           touch out/.nojekyll
           cp CNAME out/CNAME || true
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: out
-          branch: gh-pages
-          clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          path: './out'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
