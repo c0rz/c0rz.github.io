@@ -16,15 +16,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.17.0'
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --legacy-peer-deps
 
       - name: Build and Export
-        run: npm run export
+        run: |
+          npm run build
+          npm run export
         env:
-          NEXT_PUBLIC_BASE_PATH: '/{repo-name}' # Ganti {repo-name} dengan nama repository Anda
+          NEXT_PUBLIC_BASE_PATH: '/c0rz.github.io' # Sesuaikan dengan nama repo Anda
 
       - name: Add .nojekyll file
         run: touch out/.nojekyll
