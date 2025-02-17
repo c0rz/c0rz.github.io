@@ -1,5 +1,10 @@
-const withPlugins = require("next-compose-plugins");
-const optimizedImages = require("next-optimized-images");
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    unoptimized: true // karena Anda menggunakan next export
+  }
+}
 
-const nextConfig = {};
-module.exports = withPlugins([optimizedImages], nextConfig);
+module.exports = nextConfig
